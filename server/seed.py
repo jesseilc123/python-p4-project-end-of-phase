@@ -15,3 +15,9 @@ if __name__ == '__main__':
     with app.app_context():
         print("Starting seed...")
         # Seed code goes here!
+
+        # Test these first 
+
+        # user = User(username="User One", password_hash="password")
+        # post = Post(body="body", user_id=1 )
+        # comment = Comment(content="content", user_id=1, post_id=1)
