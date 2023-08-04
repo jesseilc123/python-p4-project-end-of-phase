@@ -1,5 +1,6 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.ext.associationproxy import association_proxy
 
 from config import db, bcrypt
 
@@ -7,6 +8,8 @@ from config import db, bcrypt
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
+
+    serialize_rules = ('-comments.user',)
 
     id = db.Column(db.Integer, primary_key=True)
 
@@ -36,6 +39,8 @@ class User(db.Model, SerializerMixin):
 class Article(db.Model, SerializerMixin):
     __tablename__ = 'articles'
 
+    serialize_rules = ('-comments.article',)
+
     id = db.Column(db.Integer, primary_key=True)
 
     title = db.Column(db.String)
@@ -47,11 +52,13 @@ class Article(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f"Post(id={self.id}, " + \
-            f"body={self.body}, " + \
-            f"user_id={self.user_id})"
+            f"title={self.title}, " + \
+            f"body={self.body})"
 
 class Comment(db.Model, SerializerMixin):
     __tablename__ = 'comments'
+
+    serialize_rules = ('-article.comments', '-user.comments',)
 
     id = db.Column(db.Integer, primary_key=True)
 

@@ -1,8 +1,8 @@
-"""Data updated to contain 3 tables; user, article, and comment
+"""Added associtation proxy
 
-Revision ID: 581ea8c40c38
+Revision ID: 72ff08d72e2d
 Revises: 
-Create Date: 2023-08-03 18:44:11.814236
+Create Date: 2023-08-04 17:19:14.430318
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '581ea8c40c38'
+revision = '72ff08d72e2d'
 down_revision = None
 branch_labels = None
 depends_on = None
