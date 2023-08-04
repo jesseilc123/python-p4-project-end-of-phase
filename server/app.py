@@ -8,7 +8,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import User, Post, Comment
+from models import User, Article, Comment
 
 # Views go here!
 
