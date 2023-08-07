@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
+import Home from "./Home"
+import TopNavBar from "./TopNavBar";
 
 function App() {
   return (
-    <div className="text-sky-400">Hello World</div>
+    <div>
+      <TopNavBar />
+    </div>
   )
 }
 
