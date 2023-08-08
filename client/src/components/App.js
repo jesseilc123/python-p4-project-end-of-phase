@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home"
-import TopNavBar from "./TopNavBar";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+import Login from "./Login";
 
 function App() {
   return (
     <div>
-      <TopNavBar />
+        <Login />
     </div>
   )
 }
