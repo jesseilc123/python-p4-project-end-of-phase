@@ -30,5 +30,20 @@ class Login(Resource):
             return {"error": "Invalid password"}, 401
         return {"error": "Invalid username"}, 401
     
+    class CheckSession(Resource):
+
+        def get(self):
+            user_id = session["user_id"]
+            if user_id:
+                user = User.query.filter(User.id == user_id).first()
+                user_dict = {
+                    "id": user.id,
+                    "username": user.username
+                }
+                return user_dict, 200
+            else:
+                return {"message": "Unauthorized"}, 401
+
+    
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
