@@ -68,7 +68,10 @@ if __name__ == '__main__':
         # user = User.query.first()
         # article = Article.query.first()
         # comment = Comment.query.first()
+        # user
+        # article 
+        # comment
         # user.comments
         # article.comments
-        # comment.users
+        # Comment.users
         # comment.articles

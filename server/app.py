@@ -11,6 +11,24 @@ from config import app, db, api
 from models import User, Article, Comment
 
 # Views go here!
+class Login(Resource):
 
+    def post(self):
+
+        username = request.get_json()["username"]
+        user = User.query.filter(User.username == username).first()
+
+        password = request.get_json()["password"]
+        if user:
+            if user.authenticate(password):
+                session["user_id"] = user.id
+                user_dict = {
+                    "id": user.id,
+                    "username": user.username
+                }
+                return user_dict, 200
+            return {"error": "Invalid password"}, 401
+        return {"error": "Invalid username"}, 401
+    
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
