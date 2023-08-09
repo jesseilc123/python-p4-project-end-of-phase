@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoginForm from "../components/LoginForm"
 import SignUpForm from "../components/SignUpForm"
 
-function Login() {
+function Login( { setUser }) {
     const [showLogin, setShowLogin] = useState(true)
 
     return (
@@ -26,7 +26,7 @@ function Login() {
                             </button>
                         </p>
                     </div>
-                    <LoginForm />
+                    <LoginForm setUser={setUser}/>
                 </>
             ) : (
                 <>
