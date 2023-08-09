@@ -8,33 +8,67 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db
+from models import db, User, Article, Comment
 
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
         print("Starting seed...")
+        User.query.delete()
+        Article.query.delete()
+        Comment.query.delete()
+
         # Seed code goes here!
+        print("Seeding users...")
+        users = []
+        for i in range(30):
+            user = User(
+                username = fake.unique.first_name()
+            )
+            user.password_hash = user.username + "password"
 
-        # add these
-        # user1 = User(username="User One")
-        # user1.password_hash = "passsword"
-        # db.session.add(user1)
-        # db.session.commit()
+            db.session.add(user)
+            db.session.commit()
 
-        # article1 = Article(title="title", body="body")
-        # db.session.add(article1)
-        # db.session.commit()
+            users.append(user)
 
-        # comment1 = Comment(content="content", user_id=1, article_id=1)
-        # db.session.add(comment1)
-        # db.session.commit()
+        print("Seeding articles...")
+        articles = []
+        for i in range(100):
+            article = Article(
+                title = fake.sentence(),
+                body = fake.paragraph(nb_sentences=20)
+            )
+
+            db.session.add(article)
+            db.session.commit()
+
+            articles.append(article)
+
+        comments = []
+        print("Seeding comments...")
+        for i in range(300):
+            user = rc(users)
+            article = rc(articles)
+
+            comment = Comment(
+                content = fake.sentence(),
+                user_id = user.id,
+                article_id = article.id
+            )
+
+            db.session.add(comment)
+            db.session.commit()
+
+            comments.append(comment)
+
+        print("Seed complete")
 
         # test these
-        # user1
-        # article1
-        # comment1
-        # user1.comments
-        # article1.comments
-        # comment1.users
-        # comment1.articles
+        # user = User.query.first()
+        # article = Article.query.first()
+        # comment = Comment.query.first()
+        # user.comments
+        # article.comments
+        # comment.users
+        # comment.articles

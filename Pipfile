@@ -12,6 +12,7 @@ flask-restful = "*"
 flask-cors = "*"
 flask-bcrypt = "*"
 ipdb = "*"
+faker = "==15.3.2"
 
 [dev-packages]
 

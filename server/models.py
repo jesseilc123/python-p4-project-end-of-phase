@@ -51,7 +51,7 @@ class Article(db.Model, SerializerMixin):
     comments = db.relationship("Comment", backref="article")
 
     def __repr__(self):
-        return f"Post(id={self.id}, " + \
+        return f"Article(id={self.id}, " + \
             f"title={self.title}, " + \
             f"body={self.body})"
 
@@ -70,7 +70,7 @@ class Comment(db.Model, SerializerMixin):
     article_id = db.Column(db.Integer, db.ForeignKey("articles.id"))
 
     def __repr__(self):
-        return f"Post(id={self.id}, " + \
+        return f"Comment(id={self.id}, " + \
             f"content={self.content}, " + \
             f"user_id={self.user_id}, " + \
             f"article_id={self.article_id})"
