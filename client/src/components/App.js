@@ -20,6 +20,8 @@ function App() {
   
   return (
     <div>
+        <Navbar user={user} setUser={setUser}/>
+        <Sidebar />
         <Home />
     </div>
   )
