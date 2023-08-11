@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./Home"
+import Home from "../pages/Home"
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Login from "../pages/Login";

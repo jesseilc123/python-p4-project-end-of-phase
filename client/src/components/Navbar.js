@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import schnout_favicon from "../schnout_favicon.png"
+import { NavLink } from "react-router-dom"
 
 function Navbar( { user, setUser }) {
 
@@ -14,11 +16,11 @@ function Navbar( { user, setUser }) {
     return (
         <div className="flex flex-row z-[100] h-24 w-full bg-gray-800">
             <div className="flex h-full w-fit items-center">
-                <button className="text-white p-3">
-                    Logo
-                </button>
-                <button className="text-white p-3">
-                    Browse
+                <button className="p-3 scale-[100%] flex-row grid-flow-row">
+                    <img src={schnout_favicon} alt="logo"/>
+                    <p className="text-white p-3">
+                        Schnout
+                    </p>
                 </button>
                 <button className="text-white p-3">
                     :
@@ -33,9 +35,9 @@ function Navbar( { user, setUser }) {
                 <div className="text-white p-3">
                     Welcome, <span className="italic">{user.username}</span>
                 </div>
-                <div className="text-white p-3">
+                <p className="text-white p-3">
                     Profile
-                </div>
+                </p>
                 <button className="text-white p-3" onClick={handleLogout}>
                     Logout
                 </button>

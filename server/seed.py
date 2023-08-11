@@ -35,8 +35,9 @@ if __name__ == '__main__':
         print("Seeding articles...")
         articles = []
         for i in range(100):
+
             article = Article(
-                title = fake.sentence(),
+                title = fake.sentence()[:-1],
                 body = fake.paragraph(nb_sentences=20)
             )
 

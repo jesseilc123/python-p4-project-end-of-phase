@@ -40,10 +40,27 @@ class Logout(Resource):
     def delete(self):
         session['user_id'] = None
         return {}, 204
+    
+class Articles(Resource):
+
+    def get(self):
+        list= []
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"message": "Unauthorized"}, 401
+        for article in Article.query.all():
+            article_obj = {
+                "title": article.title,
+                "body": article.body,
+            }
+            list.append(article_obj)
+        return list, 200
+
 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Login, "/login", endpoint="login")
 api.add_resource(Logout, "/logout", endpoint="logout")
+api.add_resource(Articles, "/articles", endpoint="articles")
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
