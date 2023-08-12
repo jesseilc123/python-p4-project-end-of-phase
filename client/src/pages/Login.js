@@ -48,7 +48,7 @@ function Login( { setUser }) {
                                 </button>
                             </p>
                         </div>
-                        <SignUpForm />
+                        <SignUpForm setUser={setUser}/>
                     </>
                 )}
             </div>

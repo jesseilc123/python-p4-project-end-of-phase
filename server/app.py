@@ -34,6 +34,20 @@ class Login(Resource):
                 return user.to_dict(), 200
             return {"error": "Invalid password"}, 401
         return {"error": "Invalid username"}, 401
+
+class Signup(Resource): 
+    
+    def post(self):
+        user = User(
+            username=request.get_json()["username"],
+        )
+        user.password_hash = request.get_json()["password"]
+
+        db.session.add(user)
+        db.session.commit()
+
+        # user_dict = {"id": user.id, "username": user.username}
+        return user.to_dict(), 201
     
 class Logout(Resource):
 
@@ -52,6 +66,7 @@ class Articles(Resource):
             article_obj = {
                 "title": article.title,
                 "body": article.body,
+                "category": article.category
             }
             list.append(article_obj)
         return list, 200
@@ -59,6 +74,7 @@ class Articles(Resource):
 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Login, "/login", endpoint="login")
+api.add_resource(Signup, "/signup", endpoint="signup")
 api.add_resource(Logout, "/logout", endpoint="logout")
 api.add_resource(Articles, "/articles", endpoint="articles")
 

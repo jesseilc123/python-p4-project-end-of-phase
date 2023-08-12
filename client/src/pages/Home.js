@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Article from "../components/Article"
+import Article from "../components/Articles"
 
 function App() {
   const [articles, setArticles] = useState([])
@@ -19,6 +19,7 @@ function App() {
             id={article.id}
             title={article.title}
             body={article.body}
+            category={article.category}
           />
         ))}
       </div>

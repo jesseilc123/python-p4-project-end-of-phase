@@ -19,7 +19,7 @@ if __name__ == '__main__':
         Comment.query.delete()
 
         # Seed code goes here!
-        print("Seeding users...")
+        print("--Seeding users...")
         users = []
         for i in range(30):
             user = User(
@@ -32,13 +32,15 @@ if __name__ == '__main__':
 
             users.append(user)
 
-        print("Seeding articles...")
+        print("--Seeding articles...")
         articles = []
+        cat = ["Business", "Finance", "Economics", "Computers", "Science", "Technology", "Entertainment", "Health", "Lifestyle"]
         for i in range(100):
 
             article = Article(
                 title = fake.sentence()[:-1],
-                body = fake.paragraph(nb_sentences=20)
+                body = fake.paragraph(nb_sentences=100),
+                category = rc(cat)
             )
 
             db.session.add(article)
@@ -47,7 +49,7 @@ if __name__ == '__main__':
             articles.append(article)
 
         comments = []
-        print("Seeding comments...")
+        print("--Seeding comments...")
         for i in range(300):
             user = rc(users)
             article = rc(articles)

@@ -22,7 +22,13 @@ function App() {
     <div>
         <Navbar user={user} setUser={setUser}/>
         <Sidebar />
-        <Home />
+        <main>
+          <Switch>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </main>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import schnout_favicon from "../schnout_favicon.png"
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function Navbar( { user, setUser }) {
 
@@ -14,17 +14,14 @@ function Navbar( { user, setUser }) {
     }
 
     return (
-        <div className="flex flex-row z-[100] h-24 w-full bg-gray-800">
-            <div className="flex h-full w-fit items-center">
-                <button className="p-3 scale-[100%] flex-row grid-flow-row">
-                    <img src={schnout_favicon} alt="logo"/>
-                    <p className="text-white p-3">
-                        Schnout
+        <div className="fixed flex flex-row z-[100] h-24 w-full bg-gray-800">
+            <div className="flex flex-row h-full w-fit items-center">
+                <Link to="/" className="flex flex-row  ml-12 grid-flow-row justify-center items-center">
+                    <img className="scale-[40%]" src={schnout_favicon} alt="logo"/>
+                    <p className="flex text-white text-4xl">
+                        SCHNOUT
                     </p>
-                </button>
-                <button className="text-white p-3">
-                    :
-                </button>
+                </Link>
             </div>
             <div className="relative flex items-center justify-end w-full gap-3">
                 <form className="flex items-center justify-center p-3 text-white">
