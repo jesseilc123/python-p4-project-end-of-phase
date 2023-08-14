@@ -94,8 +94,20 @@ class Comments(Resource):
         return list, 200
     
     def post(self):
-        pass
-    
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"message": "Unauthorized"}, 401
+        new_comment = Comment(
+           content=request.get_json()["content"],
+           article_id=request.get_json()["article_id"]
+        )
+        new_comment.user_id = user_id
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        return new_comment.to_dict(), 201
+
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Login, "/login", endpoint="login")
 api.add_resource(Signup, "/signup", endpoint="signup")

@@ -24,6 +24,7 @@ function Articles ({ title, body, category, comments }) {
             },
             body: JSON.stringify({
                 "content": content,
+                "article_id": id,
             }),
         })
             .then((r) => {
