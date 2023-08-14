@@ -47,7 +47,7 @@ function Articles ({ title, body, category, comments }) {
                 <h4>Comments</h4>
                 <div>
                     {comments.map(comment => (
-                        <div className="border rounded-lg px-2 py-1 my-2 h-fit w-fit">
+                        <div key={comment.id} className="border rounded-lg px-2 py-1 my-2 h-fit w-fit">
                             <div>{users.filter(user => user.id == comment.user_id).map(name => (<p key={name.id}>{name.username}</p>))}</div>
                             <div className="ml-3">{comment.content}</div>
                         </div>

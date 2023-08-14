@@ -107,6 +107,10 @@ class Comments(Resource):
         db.session.commit()
 
         return new_comment.to_dict(), 201
+    
+    def patch(self):
+        pass
+
 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Login, "/login", endpoint="login")
