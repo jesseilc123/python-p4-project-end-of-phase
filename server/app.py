@@ -54,6 +54,18 @@ class Logout(Resource):
     def delete(self):
         session['user_id'] = None
         return {}, 204
+
+class Users(Resource):
+    
+    def get(self):
+        list = []
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"message": "Unauthorized"}, 401 
+        for user in User.query.all():
+            user_obj = user.to_dict()
+            list.append(user_obj)
+        return list, 200
     
 class Articles(Resource):
 
@@ -63,31 +75,31 @@ class Articles(Resource):
         if not user_id:
             return {"message": "Unauthorized"}, 401
         for article in Article.query.all():
-            article_obj = {
-                "title": article.title,
-                "body": article.body,
-                "category": article.category
-            }
+            article_obj = article.to_dict()
             list.append(article_obj)
         return list, 200
 
-class ArticleIndex(Resource):
-
+class Comments(Resource):
+    
     def get(self):
+        list = []
         user_id = session.get("user_id")
         if not user_id:
             return {"message": "Unauthorized"}, 401
         
-
-class Comments(Resource):
-    pass
+        user = User.query.filter(User.id == user_id).first()
+        for comment in user.comments:
+            com_obj = comment.to_dict()
+            list.append(com_obj)
+        return list, 200
     
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Login, "/login", endpoint="login")
 api.add_resource(Signup, "/signup", endpoint="signup")
 api.add_resource(Logout, "/logout", endpoint="logout")
+api.add_resource(Users, "/users", endpoint="users")
 api.add_resource(Articles, "/articles", endpoint="articles")
-api.add_resource(ArticleIndex, "/articles", endpoint=":id")
+api.add_resource(Comments, "/comments", endpoint="comments")
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

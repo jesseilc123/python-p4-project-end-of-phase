@@ -13,6 +13,7 @@ function Home( { search , category }) {
 
   return (
     <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
+      <h4 className="flex justify-center m-4 text-4xl">All Articles</h4>
       <div className="grid gap-4 grid-cols-3 grid-rows-3 bg-slate-300">
         {articles.filter((article) => {         
           if (search == ""){
@@ -39,17 +40,6 @@ function Home( { search , category }) {
           />
         ))}
       </div>
-      {/* <div className="grid gap-4 grid-cols-3 grid-rows-3">
-        {articles.map((article) => (
-          <Article 
-            key={article.id}
-            id={article.id}
-            title={article.title}
-            body={article.body}
-            category={article.category}
-          />
-        ))}
-      </div> */}
     </div>
   )
 }

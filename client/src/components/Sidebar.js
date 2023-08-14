@@ -3,9 +3,6 @@ import React, { useEffect, useState } from "react";
 function Sidebar({ category, setCategory }) {
     const cat = ["All", "Business", "Finance", "Economics", "Computers", "Science", "Technology", "Entertainment", "Health", "Lifestyle"]
 
-    const handleCategory = (e) => {
-        setCategory(e)
-    }
     return (
         <div className="fixed left-0 w-64 h-full bg-gray-900 text-white">
             <div>

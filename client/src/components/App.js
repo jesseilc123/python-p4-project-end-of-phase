@@ -4,7 +4,8 @@ import Home from "../pages/Home"
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Login from "../pages/Login";
-import ArticleDetail from "./ArticleDetail";
+import ArticleDetail from "../pages/ArticleDetail";
+import Profile from "../pages/Profile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,7 +28,12 @@ function App() {
         <Sidebar category={category} setCategory={setCategory}/>
         <main>
           <Switch>
-            <Route path="/articles/:id" component={ArticleDetail}/>
+            <Route path="/articles/:id"> 
+              <ArticleDetail />
+            </ Route>
+            <Route path="/profile"> 
+              <Profile />
+            </ Route>
             <Route path="/"> 
               <Home search={search} category={category}/>
             </ Route>

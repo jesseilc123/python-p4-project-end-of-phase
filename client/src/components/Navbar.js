@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import schnout_favicon from "../schnout_favicon.png"
-import { Link } from "react-router-dom"
+import Profile from "../pages/Profile";
+import { NavLink, Link } from "react-router-dom"
 
 function Navbar( { user, setUser, search, setSearch }) {
 
     function handleLogout() {
-        console.log(user)
         fetch("/logout", { method: "DELETE" }).then((r) => {
             if (r.ok) {
-              setUser(null);
+            setUser(null);
             }
-          });
+        })
     }
 
     return (
@@ -37,9 +37,9 @@ function Navbar( { user, setUser, search, setSearch }) {
                 <div className="text-white p-3">
                     Welcome, <span className="italic">{user.username}</span>
                 </div>
-                <p className="text-white p-3">
-                    Profile
-                </p>
+                <Link to="/profile">
+                    <p className="text-white p-3">Profile</p>
+                </Link>
                 <button className="text-white p-3" onClick={handleLogout}>
                     Logout
                 </button>
