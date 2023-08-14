@@ -93,6 +93,9 @@ class Comments(Resource):
             list.append(com_obj)
         return list, 200
     
+    def post(self):
+        pass
+    
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Login, "/login", endpoint="login")
 api.add_resource(Signup, "/signup", endpoint="signup")
