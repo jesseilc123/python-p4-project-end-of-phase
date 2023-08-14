@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Login from "../pages/Login";
 
 function SignUpForm({ setUser }) {
     const [username, setUsername] = useState("");
@@ -11,12 +12,12 @@ function SignUpForm({ setUser }) {
         fetch("/signup", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-type": "application/json"
             },
             body: JSON.stringify({
                 username,
                 password,
-                passwordConfirmation,
+                password_confirmation: passwordConfirmation,
             }),
         })
             .then((r) => {

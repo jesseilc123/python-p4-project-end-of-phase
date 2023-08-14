@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import schnout_favicon from "../schnout_favicon.png"
 import { Link } from "react-router-dom"
 
-function Navbar( { user, setUser }) {
+function Navbar( { user, setUser, search, setSearch }) {
 
     function handleLogout() {
         console.log(user)
@@ -24,8 +24,13 @@ function Navbar( { user, setUser }) {
                 </Link>
             </div>
             <div className="relative flex items-center justify-end w-full gap-3">
-                <form className="flex items-center justify-center p-3 text-white">
-                    <input className="pl-3"placeholder="Search"/>
+                <form className="flex w-fit items-center justify-center p-3">
+                    <input 
+                        className="pl-3 border-2 rounded-lg bg-gray-800 text-white" 
+                        placeholder="Search..."
+                        onChange={(e) => setSearch(e.target.value)}
+                        value={search}
+                    />
                 </form>
             </div>
             <div className="flex w-full items-center  justify-end">

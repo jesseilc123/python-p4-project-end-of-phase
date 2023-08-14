@@ -4,9 +4,11 @@ import Home from "../pages/Home"
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Login from "../pages/Login";
+import ArticleDetail from "./ArticleDetail";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     fetch("/check_session").then((r) => {
@@ -20,13 +22,14 @@ function App() {
   
   return (
     <div>
-        <Navbar user={user} setUser={setUser}/>
+        <Navbar user={user} setUser={setUser} search={search} setSearch={setSearch}/>
         <Sidebar />
         <main>
           <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
+            <Route path="/articles/:id" component={ArticleDetail}/>
+            <Route path="/"> 
+              <Home search={search}/>
+            </ Route>
           </Switch>
         </main>
     </div>

@@ -38,7 +38,7 @@ if __name__ == '__main__':
         for i in range(100):
 
             article = Article(
-                title = fake.sentence()[:-1],
+                title = fake.sentence()[:-1].title(),
                 body = fake.paragraph(nb_sentences=100),
                 category = rc(cat)
             )

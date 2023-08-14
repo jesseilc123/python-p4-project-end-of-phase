@@ -9,10 +9,7 @@ function Sidebar() {
                 <div className="text-2xl pb-4 pt-3 ml-1">Categories</div>
                 <div>
                     {cat.map((c) => (
-                        <p 
-                            key={c}
-                            className="text-2xl pt-3 ml-6"
-                        >
+                        <p key={c} className="text-2xl pt-3 ml-6">
                             {c}
                         </p>
                     ))}

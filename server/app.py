@@ -71,12 +71,23 @@ class Articles(Resource):
             list.append(article_obj)
         return list, 200
 
+class ArticleIndex(Resource):
 
+    def get(self):
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"message": "Unauthorized"}, 401
+        
+
+class Comments(Resource):
+    pass
+    
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Login, "/login", endpoint="login")
 api.add_resource(Signup, "/signup", endpoint="signup")
 api.add_resource(Logout, "/logout", endpoint="logout")
 api.add_resource(Articles, "/articles", endpoint="articles")
+api.add_resource(ArticleIndex, "/articles", endpoint=":id")
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
