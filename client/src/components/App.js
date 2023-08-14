@@ -9,6 +9,7 @@ import ArticleDetail from "./ArticleDetail";
 function App() {
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState("")
+  const [category, setCategory] = useState("All")
 
   useEffect(() => {
     fetch("/check_session").then((r) => {
@@ -23,12 +24,12 @@ function App() {
   return (
     <div>
         <Navbar user={user} setUser={setUser} search={search} setSearch={setSearch}/>
-        <Sidebar />
+        <Sidebar category={category} setCategory={setCategory}/>
         <main>
           <Switch>
             <Route path="/articles/:id" component={ArticleDetail}/>
             <Route path="/"> 
-              <Home search={search}/>
+              <Home search={search} category={category}/>
             </ Route>
           </Switch>
         </main>

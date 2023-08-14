@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Article from "../components/Articles"
 
-function Home( { search }) {
+function Home( { search , category }) {
   const [articles, setArticles] = useState([])
 
   useEffect(() => {
@@ -12,14 +12,23 @@ function Home( { search }) {
 
 
   return (
-    <div className="absolute inset-x-0 top-[90px] h-full left-64 bg-slate-300">
-      <div className="grid gap-4 grid-cols-3 grid-rows-3">
-        {articles.filter((article) => {
-          if (search == "") {
-            return article
-          } else if (article.title.toLowerCase().includes(search.toLowerCase())){
-            return article
+    <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
+      <div className="grid gap-4 grid-cols-3 grid-rows-3 bg-slate-300">
+        {articles.filter((article) => {         
+          if (search == ""){
+            if(category == "All"){
+              return article
+            } else if (article.category == category){
+              return article
+            }
           }
+          if (article.title.toLowerCase().includes(search.toLowerCase())){
+            if(category == "All"){
+              return article
+            } else if (article.category == category){
+              return article
+            }
+          } 
         }).map((article) => (
           <Article 
             key={article.id}
