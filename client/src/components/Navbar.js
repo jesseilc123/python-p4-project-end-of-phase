@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import schnout_favicon from "../schnout_favicon.png"
-import Profile from "../pages/Profile";
-import { NavLink, Link } from "react-router-dom"
+import {  Link } from "react-router-dom"
 
 function Navbar( { user, setUser, search, setSearch }) {
 

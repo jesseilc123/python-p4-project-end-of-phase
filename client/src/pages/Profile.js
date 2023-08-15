@@ -13,9 +13,28 @@ function Profile() {
 
         fetch("/articles")
             .then((r) => r.json())
-            .then(setArticles)
+            .then(e => setArticles(e))
 
-    }, [setArticles]);
+    }, []);
+
+    function editRender(e) {
+        const newComments = comments.map((comment) => {
+            if (comment.id === e.id) {
+                comment.content = e.content
+            }
+        return comment
+        })
+        setComments(newComments)
+    }
+
+    function deleteRender(id) {
+        const newComments = comments.filter((comment) => {
+            if (comment.id !== id) {
+                return comment
+            }
+        })
+        setComments(newComments)
+    }
 
     return (
         <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
@@ -28,7 +47,8 @@ function Profile() {
                         content={comment.content}
                         article_id={comment.article_id}
                         articles={articles}
-                        setArticles={setArticles}
+                        editRender={editRender}
+                        deleteRender={deleteRender}
                     />
                 ))}
             </div>

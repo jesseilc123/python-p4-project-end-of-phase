@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
-function Articles ({ title, body, category, comments, setArticles, articleState}) {
+function Articles ({ title, body, category, comments, newCommentRender}) {
     const [users, setUsers] = useState([])
     const [content, setContent] = useState("")
-    const history = useHistory();
     const { id } = useParams()
 
     useEffect(() => {
@@ -16,7 +14,6 @@ function Articles ({ title, body, category, comments, setArticles, articleState}
     
     function handleCommentSubmit(e) {
         e.preventDefault();
-        console.log(id)
         fetch("/comments", {
             method: "POST",
             headers: {
@@ -30,10 +27,9 @@ function Articles ({ title, body, category, comments, setArticles, articleState}
             .then((r) => {
                 if (r.ok) {
                     r.json().then(e => {
-                        const newState = ([{...articleState, e}])
-                        setArticles(newState)
+                        setContent("")
+                        newCommentRender(e)
                     })
-
                 } else {
                     r.json().then((err) => console.log(err))
                 }
@@ -52,7 +48,7 @@ function Articles ({ title, body, category, comments, setArticles, articleState}
                 <div>
                     {comments.map(comment => (
                         <div key={comment.id} className="border rounded-lg px-2 py-1 my-2 h-fit w-fit">
-                            <div>{users.filter(user => user.id == comment.user_id).map(name => (<p key={name.id}>{name.username}</p>))}</div>
+                            <div>{users.filter(user => user.id === comment.user_id).map(name => (<p key={name.id}>{name.username}</p>))}</div>
                             <div className="ml-3">{comment.content}</div>
                         </div>
                     ))}

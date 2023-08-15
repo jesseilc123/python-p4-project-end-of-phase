@@ -15,18 +15,18 @@ function Home( { search , category }) {
     <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
       <h4 className="flex justify-center m-4 text-4xl">All Articles</h4>
       <div className="grid gap-4 grid-cols-3 grid-rows-3 bg-slate-300">
-        {articles.filter((article) => {         
-          if (search == ""){
-            if(category == "All"){
+        {articles.filter(article => {         
+          if (search === ""){
+            if(category === "All"){
               return article
-            } else if (article.category == category){
+            } else if (article.category === category){
               return article
             }
           }
           if (article.title.toLowerCase().includes(search.toLowerCase())){
-            if(category == "All"){
+            if(category === "All"){
               return article
-            } else if (article.category == category){
+            } else if (article.category === category){
               return article
             }
           } 

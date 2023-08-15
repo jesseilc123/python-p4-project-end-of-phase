@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-function ProfileComments ({ id, content, article_id, articles, setArticles }) {
+function ProfileComments ({ id, content, article_id, articles, editRender, deleteRender}) {
     const [isForm, setIsForm] = useState(true)
     const [comment, setComment] = useState(content)
 
@@ -21,8 +21,13 @@ function ProfileComments ({ id, content, article_id, articles, setArticles }) {
                 "id": id,
             }),
         })
-        .then(r => r.json())
-        .then(e => console.log(e))
+        .then((r) => {
+            if (r.ok) {
+                r.json().then(deleteRender(id))
+            } else {
+                r.json().then((err) => console.log(err))
+            }
+        })
     }
 
     function handleCommentEdit(e) {
@@ -40,7 +45,10 @@ function ProfileComments ({ id, content, article_id, articles, setArticles }) {
         })
             .then((r) => {
                 if (r.ok) {
-                    r.json().then(e => console.log(e))
+                    r.json().then(e => {
+                        editRender(e)
+                        setIsForm(!isForm)
+                    })
                 } else {
                     r.json().then((err) => console.log(err))
                 }
@@ -50,7 +58,7 @@ function ProfileComments ({ id, content, article_id, articles, setArticles }) {
     return  (
         <div className="h-[500px] overflow-clip grid border mt-3 p-1 rounded-lg ">
             <div>
-                {articles.filter(article => article.id == article_id).map(article => (
+                {articles.filter(article => article.id === article_id).map(article => (
                     <div key={article.id}>
                         <h2 className="font-bold text-4xl">{article.title}</h2>
                         <p className="border rounded-lg px-2 py-1 my-2 h-fit w-fit">{article.category}</p>
@@ -69,7 +77,7 @@ function ProfileComments ({ id, content, article_id, articles, setArticles }) {
                         ) : (
                             <form>
                                 <input 
-                                    className="border rounded-lg px-2 py-1 my-2 w-[300px]"
+                                    className="border rounded-lg px-2 py-1 my-2 w-[200px]"
                                     type="text"
                                     id="username"
                                     autoComplete="off"
@@ -78,22 +86,22 @@ function ProfileComments ({ id, content, article_id, articles, setArticles }) {
                                 />
                                 <button
                                     type="submit"
-                                    className="flex flex-col hover:bg-green-300 border rounded-lg px-2 py-1 my-2"
+                                    className=" justify-end hover:bg-green-300 border rounded-lg px-2 py-1 my-2 ml-1"
                                     onClick={handleCommentEdit}
                                 >
-                                    Confirm Change?
+                                    Confirm?
                                 </button>
                             </form>
                         )}
                     </div>
                     <button 
-                        className="border rounded-lg px-2 py-1 my-2 h-fit w-fit hover:bg-gray-300"
+                        className={`border rounded-lg px-2 py-1 my-2 h-fit w-fit  ${isForm ? "hover:bg-gray-300" : "hover:bg-red-300"}`}
                         onClick={hideCommentEdit}
                     >
-                        Edit
+                        {isForm ? "Edit" : "Cancel"}
                     </button>
                     <button 
-                        className="border rounded-lg px-2 py-1 my-2 h-fit w-fit hover:bg-red-300"
+                        className={`border rounded-lg px-2 py-1 my-2 h-fit w-fit hover:bg-red-300 ${isForm ? "flex" : "hidden"}`}
                         onClick={handleCommentDelete}
                     >
                         X
