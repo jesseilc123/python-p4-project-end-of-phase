@@ -14,6 +14,7 @@ function Home( { search , category }) {
     console.log("article")
   }
 
+  if (!articles) return <h2>loading</h2>
   return (
     <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
       <h4 className="flex justify-center m-4 text-4xl">All Articles</h4>
@@ -43,7 +44,7 @@ function Home( { search , category }) {
             />
           ))}
           <button 
-            className="flex flex-col items-center justify-center border mt-3 mx-2 rounded-lg hover:bg-slate-400 shadow-md"
+            className="flex flex-col min-h-[500px] items-center justify-center border mt-3 mx-2 rounded-lg hover:bg-slate-400 shadow-md"
             onClick={handleNewArticle}
           >
             <p className="text-2xl mb-6">Make new article</p>

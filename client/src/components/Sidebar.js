@@ -8,11 +8,11 @@ function Sidebar({ category, setCategory }) {
             <div>
                 <div className="h-[100px] content-end">push item-s down</div>
                 <div className="text-2xl pb-4 pt-3 ml-1">Categories</div>
-                <div className="flex justify-start flex-col">
+                <div className="flex flex-col justify-start items-start">
                     {cat.map((c) => (
                         <button 
                             key={c} 
-                            className="text-2xl pt-3 ml-6" 
+                            className="text-2xl pt-3 ml-6 hover:text-orange-300" 
                             onClick={(e) => setCategory(e.target.value)}
                             value={c}
                         >
@@ -20,6 +20,12 @@ function Sidebar({ category, setCategory }) {
                         </button>
                     ))}
                 </div>
+                <button 
+                    className="text-2xl pb-4 pt-3 ml-1 mt-3 hover:text-orange-300" 
+                    onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}
+                >
+                    Back to top
+                </button>
             </div>
         </div>
     )

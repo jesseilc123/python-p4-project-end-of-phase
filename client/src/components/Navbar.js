@@ -32,14 +32,14 @@ function Navbar( { user, setUser, search, setSearch }) {
                     />
                 </form>
             </div>
-            <div className="flex w-full items-center  justify-end">
-                <div className="text-white p-3">
-                    Welcome, <span className="italic">{user.username}</span>
+            <div className="flex w-full items-center justify-end">
+                <div className="text-white text-xl p-3">
+                    Welcome, &nbsp;<span className="italic text-orange-300">{user.username}</span>
                 </div>
                 <Link to="/profile">
-                    <p className="text-white p-3">Profile</p>
+                    <p className="text-white text-xl p-3 hover:text-orange-300">Profile</p>
                 </Link>
-                <button className="text-white p-3" onClick={handleLogout}>
+                <button className="text-white text-xl p-3 hover:text-orange-300" onClick={handleLogout}>
                     Logout
                 </button>
             </div>

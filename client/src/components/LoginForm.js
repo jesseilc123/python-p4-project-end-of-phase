@@ -24,9 +24,9 @@ function LoginForm( { setUser }) {
     return (
         <form onSubmit={handleSubmit} className="w-[400px]">
             <div className="mb-4">
-                <label className="text-[18px] font-bold	">Username</label>
+                <label className="text-4xl font-bold text-black">Username</label>
                 <input 
-                    className="w-full h-full border-2 border-black rounded p-1 text-[18px]"
+                    className="w-full h-full border-2 border-black rounded p-2 text-xl bg-gray-400"
                     type="text"
                     id="username"
                     autoComplete="off"
@@ -35,9 +35,9 @@ function LoginForm( { setUser }) {
                 />
             </div>
             <div className="mb-4">
-                <label className="text-[18px] font-bold	">Password</label>
+                <label className="text-4xl font-bold">Password</label>
                 <input 
-                    className="w-full h-full border-2 border-black rounded p-1 text-[18px]"
+                    className="w-full h-full border-2 border-black rounded p-2 text-xl bg-gray-400"
                     type="password"
                     id="password"
                     autoComplete="off"
