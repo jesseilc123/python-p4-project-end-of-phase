@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { useHistory } from "react-router";
 
-function ProfileComments ({ id, content, article_id, articles, }) {
+function ProfileComments ({ id, content, article_id, articles, setArticles }) {
     const [isForm, setIsForm] = useState(true)
     const [comment, setComment] = useState(content)
-    const history = useHistory();
+
 
     function hideCommentEdit() {
         setIsForm((isForm) => (!isForm))
@@ -13,6 +12,15 @@ function ProfileComments ({ id, content, article_id, articles, }) {
 
     function handleCommentDelete() {
         console.log("delete")
+        fetch("/comments", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        })
+        .then(r => r.json())
+        .then(e => console.log(e))
     }
 
     function handleCommentEdit(e) {
@@ -30,7 +38,7 @@ function ProfileComments ({ id, content, article_id, articles, }) {
         })
             .then((r) => {
                 if (r.ok) {
-                    history.push("/profile");
+                    r.json().then(e => console.log(e))
                 } else {
                     r.json().then((err) => console.log(err))
                 }

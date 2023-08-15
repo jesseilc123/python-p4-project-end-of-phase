@@ -47,7 +47,7 @@ class Signup(Resource):
             db.session.add(user)
             db.session.commit()
             session["user_id"] = user.id
-            
+
             return user.to_dict(), 201
         except IntegrityError:
             return {"message": "Username must be unique"}, 422
@@ -117,14 +117,14 @@ class Comments(Resource):
         if not user_id:
             return {"message": "Unauthorized"}, 401
         id = request.get_json()["id"]
-        print(id)
-        comment = Comment.query.filter(Comment.id == id)
+
+        comment = Comment.query.filter(Comment.id == id).first()
         setattr(comment, "content", request.get_json()["content"])
         
         db.session.add(comment)
         db.session.commit()
 
-        return comment.to_dict(), 200     
+        return comment.to_dict(), 201     
 
 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')

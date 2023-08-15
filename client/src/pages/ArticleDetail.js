@@ -10,7 +10,7 @@ function ArticleDetail() {
         fetch("/articles")
             .then(r => r.json())
             .then(setArticles)
-    }, [id, articles])
+    }, [id])
 
     return (
         <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">

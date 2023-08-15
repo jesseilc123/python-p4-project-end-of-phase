@@ -5,6 +5,7 @@ function Profile() {
     const [comments, setComments] = useState([])
     const [articles, setArticles] = useState([])
 
+
     useEffect(() => {
         fetch("/comments")
             .then((r) => r.json())
@@ -14,7 +15,7 @@ function Profile() {
             .then((r) => r.json())
             .then(setArticles)
 
-    }, []);
+    }, [setArticles]);
 
     return (
         <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
@@ -27,6 +28,7 @@ function Profile() {
                         content={comment.content}
                         article_id={comment.article_id}
                         articles={articles}
+                        setArticles={setArticles}
                     />
                 ))}
             </div>
