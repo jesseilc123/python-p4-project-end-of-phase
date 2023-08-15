@@ -124,7 +124,15 @@ class Comments(Resource):
         db.session.add(comment)
         db.session.commit()
 
-        return comment.to_dict(), 201     
+        return comment.to_dict(), 201   
+
+    def delete(self):
+        comment = Comment.query.filter(Comment.id == request.get_json()["id"]).first()
+
+        db.session.delete(comment)
+        db.session.commit()
+
+        return {"message": "comment successfully deleted"}, 200
 
 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')

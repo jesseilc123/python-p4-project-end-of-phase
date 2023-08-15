@@ -16,8 +16,10 @@ function ProfileComments ({ id, content, article_id, articles, setArticles }) {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json"
-            }
+            },
+            body: JSON.stringify({
+                "id": id,
+            }),
         })
         .then(r => r.json())
         .then(e => console.log(e))
