@@ -7,7 +7,7 @@ function Navbar( { user, setUser, search, setSearch }) {
     function handleLogout() {
         fetch("/logout", { method: "DELETE" }).then((r) => {
             if (r.ok) {
-            setUser(null);
+                setUser(null);
             }
         })
     }
@@ -22,10 +22,10 @@ function Navbar( { user, setUser, search, setSearch }) {
                     </p>
                 </Link>
             </div>
-            <div className="relative flex items-center justify-end w-full gap-3">
+            <div className="relative flex items-center justify-end ml-[360px] w-full gap-3">
                 <form className="flex w-fit items-center justify-center p-3">
                     <input 
-                        className="pl-3 border-2 rounded-lg bg-gray-800 text-white" 
+                        className="pl-3 border-2 border-black rounded-lg bg-gray-500 text-white text-2xl" 
                         placeholder="Search..."
                         onChange={(e) => setSearch(e.target.value)}
                         value={search}

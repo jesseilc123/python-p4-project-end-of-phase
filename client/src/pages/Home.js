@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Article from "../components/Articles"
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Home( { search , category }) {
   const [articles, setArticles] = useState([])
@@ -16,9 +17,9 @@ function Home( { search , category }) {
 
   if (!articles) return <h2>loading</h2>
   return (
-    <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
-      <h4 className="flex justify-center m-4 text-4xl">All Articles</h4>
-      <div className="grid gap-0 grid-cols-3 grid-rows-3 bg-slate-300">
+    <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-400 rounded-lg">
+      <h4 className="flex items-center justify-center m-4 text-4xl">All Articles</h4>
+      <div className="grid gap-0 grid-cols-3 grid-rows-3 bg-slate-400">
           {articles.filter(article => {         
             if (search === ""){
               if(category === "All"){
@@ -43,15 +44,15 @@ function Home( { search , category }) {
               category={article.category}
             />
           ))}
-          <button 
+          <Link 
             className="flex flex-col min-h-[500px] items-center justify-center border mt-3 mx-2 rounded-lg hover:bg-slate-400 shadow-md"
-            onClick={handleNewArticle}
+            to="/new_article"
           >
             <p className="text-2xl mb-6">Make new article</p>
             <p className="text-4xl items-center pt-2 justify-center font-bold border-4 border-black h-[75px] w-[75px] shadow-xlg">
               <span>&nbsp;</span> + <span>&nbsp;</span>
             </p>
-          </button>
+          </Link>
       </div>
       <div className="bg-slate-300 h-[50px]"></div>
     </div>

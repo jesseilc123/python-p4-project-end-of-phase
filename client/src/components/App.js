@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import Login from "../pages/Login";
 import ArticleDetail from "../pages/ArticleDetail";
 import Profile from "../pages/Profile";
+import NewArticle from "../pages/NewArticle";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -31,12 +32,18 @@ function App() {
             <Route path="/articles/:id"> 
               <ArticleDetail />
             </ Route>
+            <Route path="/new_article"> 
+              <NewArticle />
+            </ Route>
             <Route path="/profile"> 
               <Profile />
             </ Route>
             <Route path="/"> 
               <Home search={search} category={category}/>
             </ Route>
+            <Route path="/*">
+              <h1>404 Page not found</h1>
+            </Route>
           </Switch>
         </main>
     </div>
