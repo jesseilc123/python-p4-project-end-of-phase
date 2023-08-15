@@ -5,6 +5,7 @@
 # Remote library imports
 from flask import request, session
 from flask_restful import Resource
+from sqlalchemy.exc import IntegrityError
 
 # Local imports
 from config import app, db, api
@@ -42,12 +43,15 @@ class Signup(Resource):
             username=request.get_json()["username"],
         )
         user.password_hash = request.get_json()["password"]
-
-        db.session.add(user)
-        db.session.commit()
-
-        # user_dict = {"id": user.id, "username": user.username}
-        return user.to_dict(), 201
+        try:
+            db.session.add(user)
+            db.session.commit()
+            session["user_id"] = user.id
+            
+            return user.to_dict(), 201
+        except IntegrityError:
+            return {"message": "Username must be unique"}, 422
+        
     
 class Logout(Resource):
 
@@ -109,7 +113,18 @@ class Comments(Resource):
         return new_comment.to_dict(), 201
     
     def patch(self):
-        pass
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"message": "Unauthorized"}, 401
+        id = request.get_json()["id"]
+        print(id)
+        comment = Comment.query.filter(Comment.id == id)
+        setattr(comment, "content", request.get_json()["content"])
+        
+        db.session.add(comment)
+        db.session.commit()
+
+        return comment.to_dict(), 200     
 
 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')

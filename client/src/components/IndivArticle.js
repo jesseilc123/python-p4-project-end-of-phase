@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
-function Articles ({ title, body, category, comments }) {
+function Articles ({ title, body, category, comments, setArticles, articleState}) {
     const [users, setUsers] = useState([])
     const [content, setContent] = useState("")
     const history = useHistory();
@@ -29,7 +29,11 @@ function Articles ({ title, body, category, comments }) {
         })
             .then((r) => {
                 if (r.ok) {
-                    history.push("/profile");
+                    r.json().then(e => {
+                        const newState = ([{...articleState, e}])
+                        setArticles(newState)
+                    })
+
                 } else {
                     r.json().then((err) => console.log(err))
                 }

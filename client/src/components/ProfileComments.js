@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router";
 
-function ProfileComments ({ id, content, article_id, articles}) {
+function ProfileComments ({ id, content, article_id, articles, }) {
     const [isForm, setIsForm] = useState(true)
     const [comment, setComment] = useState(content)
     const history = useHistory();
@@ -15,7 +15,7 @@ function ProfileComments ({ id, content, article_id, articles}) {
         console.log("delete")
     }
 
-    function handleCommentEdit() {
+    function handleCommentEdit(e) {
         e.preventDefault();
         console.log("edit")
         fetch("/comments", {
@@ -24,8 +24,8 @@ function ProfileComments ({ id, content, article_id, articles}) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                "id": id,
                 "content": comment,
-                "article_id": article_id
             }),
         })
             .then((r) => {

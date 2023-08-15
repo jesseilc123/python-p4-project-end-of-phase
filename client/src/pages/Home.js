@@ -40,6 +40,9 @@ function Home( { search , category }) {
           />
         ))}
       </div>
+      <div className="grid gap-4 grid-cols-3 grid-rows-3 bg-slate-300">
+        <button>Make new article</button>
+      </div>
     </div>
   )
 }
