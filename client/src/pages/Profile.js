@@ -37,9 +37,9 @@ function Profile() {
     }
 
     return (
-        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
-            <h4 className="flex justify-center m-4 text-4xl">Articles you've Commented on</h4>
-            <div className="grid gap-4 grid-cols-3 grid-rows-3 bg-slate-300">
+        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-800">
+            <h4 className="flex justify-center m-4 text-4xl text-white font-bold">Articles you've Commented on</h4>
+            <div className="grid grid-cols-3 grid-rows-3 bg-gray-800">
                 {comments.map((comment) => (
                     <ProfileComments 
                         key={comment.id}
@@ -52,6 +52,7 @@ function Profile() {
                     />
                 ))}
             </div>
+            <div className="bg-gray-900 h-[50px]"></div>
         </div>
     )
 };

@@ -82,6 +82,21 @@ class Articles(Resource):
             article_obj = article.to_dict()
             list.append(article_obj)
         return list, 200
+    
+    def post(self):
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"message": "Unauthorized"}, 401
+        new_article = Article(
+            title=request.get_json()["title"],
+            body=request.get_json()["body"],
+            category=request.get_json()["category"],
+        )
+
+        db.session.add(new_article)
+        db.session.commit()
+
+        return new_article.to_dict(), 201
 
 class Comments(Resource):
     

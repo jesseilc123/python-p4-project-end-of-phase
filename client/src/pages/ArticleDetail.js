@@ -13,7 +13,6 @@ function ArticleDetail() {
     }, [id])
 
     function newCommentRender(e) {
-        // setArticles([...articles.comments, e])
         const articlesNewComment = articles.filter((article) =>{
             if (article.id === e.article_id) {
                 return article.comments.push(e)
@@ -22,10 +21,11 @@ function ArticleDetail() {
         setArticles(articlesNewComment)
     }
     return (
-        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-300">
-            {articles.filter(article => (id) == article.id).map(article => (
+        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-800">
+            {articles.filter((article) => (id) == article.id).map(article => (
                 <IndiviArticle 
                     key={article.id}
+                    created_at={article.created_at}
                     title={article.title}
                     body={article.body}
                     category={article.category}

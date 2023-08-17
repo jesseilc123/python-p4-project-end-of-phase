@@ -56,29 +56,29 @@ function ProfileComments ({ id, content, article_id, articles, editRender, delet
     }
 
     return  (
-        <div className="h-[500px] overflow-clip grid border mt-3 p-1 rounded-lg ">
+        <div className="h-[500px] border-black border-2 overflow-clip grid mt-3 mx-2 p-1 rounded-xl bg-gray-400 shadow-md">
             <div>
                 {articles.filter(article => article.id === article_id).map(article => (
                     <div key={article.id}>
                         <h2 className="font-bold text-4xl">{article.title}</h2>
-                        <p className="border rounded-lg px-2 py-1 my-2 h-fit w-fit">{article.category}</p>
+                        <p className="border-black font-bold border-2 rounded-xl px-2 py-1 my-2 h-fit w-fit bg-orange-300 shadow-md">{article.category}</p>
                         <p className="text-xl">{article.body.substring(0, 300)}...</p>
                     </div>
                 ))}
             </div>
             <div className="flex flex-col justify-end">
-                <h2>Your comment:</h2>
+                <h2 className="text-xl font-semibold">Your comment:</h2>
                 <div className="flex flex-row gap-1">
                     <div>
                         {isForm ? (
-                            <p className="border rounded-lg px-2 py-1 my-2 h-fit w-fit">
+                            <p className="border-black border-2 bg-orange-300 text-lg font-semibold rounded-xl px-2 py-1 my-2 h-fit w-fit shadow-md">
                                 {content}
                             </p>
                         ) : (
                             <form>
                                 <input 
-                                    className="border rounded-lg px-2 py-1 my-2 w-[200px]"
-                                    type="text"
+                                    className="border-black rounded-xl px-2 py-1 my-2 w-[300px] h-fit"
+                                    type="body"
                                     id="username"
                                     autoComplete="off"
                                     value={comment}
@@ -86,7 +86,7 @@ function ProfileComments ({ id, content, article_id, articles, editRender, delet
                                 />
                                 <button
                                     type="submit"
-                                    className=" justify-end hover:bg-green-300 border rounded-lg px-2 py-1 my-2 ml-1"
+                                    className=" justify-end bg-slate-300 hover:bg-green-300 border-black border-2 font-semibold rounded-xl px-2 py-1 my-2 ml-1"
                                     onClick={handleCommentEdit}
                                 >
                                     Confirm?
@@ -95,19 +95,19 @@ function ProfileComments ({ id, content, article_id, articles, editRender, delet
                         )}
                     </div>
                     <button 
-                        className={`border rounded-lg px-2 py-1 my-2 h-fit w-fit  ${isForm ? "hover:bg-gray-300" : "hover:bg-red-300"}`}
+                        className={`border-black border-2 font-semibold rounded-xl px-2 py-1 my-2 h-fit w-fit bg-slate-300  ${isForm ? "hover:bg-gray-300" : "hover:bg-red-300"}`}
                         onClick={hideCommentEdit}
                     >
                         {isForm ? "Edit" : "Cancel"}
                     </button>
                     <button 
-                        className={`border rounded-lg px-2 py-1 my-2 h-fit w-fit hover:bg-red-300 ${isForm ? "flex" : "hidden"}`}
+                        className={`border-black border-2 font-semibold rounded-xl px-2 py-1 my-2 h-fit w-fit hover:bg-red-300 bg-slate-300 ${isForm ? "flex" : "hidden"}`}
                         onClick={handleCommentDelete}
                     >
                         X
                     </button>
                 </div>
-                <Link to={`/articles/${article_id}`} className="border rounded-lg px-2 py-1 my-2 h-fit w-fit hover:bg-gray-400">See article</Link>
+                <Link to={`/articles/${article_id}`} className="border-black border-2 font-semibold bg-slate-300 shadow-md rounded-xl px-2 py-1 my-2 h-fit w-fit hover:bg-slate-400">See article</Link>
             </div>
         </div> 
     )

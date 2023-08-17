@@ -13,11 +13,11 @@ function Navbar( { user, setUser, search, setSearch }) {
     }
 
     return (
-        <div className="fixed flex flex-row z-[100] h-24 w-full bg-gray-800">
+        <div className="fixed flex flex-row z-[100] h-24 w-full bg-gray-900">
             <div className="flex flex-row h-full w-fit items-center">
                 <Link to="/" className="flex flex-row  ml-12 grid-flow-row justify-center items-center">
-                    <img className="scale-[40%]" src={schnout_favicon} alt="logo"/>
-                    <p className="flex text-white text-4xl">
+                    <img className="object-scale-down scale-[75%]" src={schnout_favicon} alt="logo"/>
+                    <p className="flex text-white text-4xl justify-start">
                         SCHNOUT
                     </p>
                 </Link>

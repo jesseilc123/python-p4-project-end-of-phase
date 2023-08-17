@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-function LoginForm( { setUser }) {
+function LoginForm ( { setUser } ) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [invalid, setInvalid] = useState(false)
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -14,39 +15,44 @@ function LoginForm( { setUser }) {
           body: JSON.stringify({ username, password }),
         }).then(r => {
             if (r.ok) {
-                r.json().then((user) => setUser(user));
+                r.json().then((user) => {
+                    setUser(user)
+                    setInvalid(false)
+                });
             } else {
-                alert("Incorrect username or password")
+                setInvalid(!invalid)
             }
         })
     }   
 
     return (
-        <form onSubmit={handleSubmit} className="w-[400px]">
-            <div className="mb-4">
-                <label className="text-4xl font-bold text-black">Username</label>
+        <form autoComplete="off" onSubmit={handleSubmit} className="w-[400px]">
+            <div>
+                <label className="text-4xl font-bold text-white">Username</label>
                 <input 
-                    className="w-full h-full border-2 border-black rounded p-2 text-xl bg-gray-400"
+                    className={`mt-1 w-full h-full border-2 border-black rounded-xl p-2 text-xl bg-gray-400 placeholder-black focus:outline-blue-400 ${invalid ? "border-red-700" : ""}`}
                     type="text"
                     id="username"
-                    autoComplete="off"
+                    placeholder="Enter your username..."
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
+                {invalid ? <p className="text-red-700">Invalid username or password</p> : <p>.</p>}
             </div>
-            <div className="mb-4">
-                <label className="text-4xl font-bold">Password</label>
+            <div>
+                <label className="text-4xl font-bold text-white">Password</label>
                 <input 
-                    className="w-full h-full border-2 border-black rounded p-2 text-xl bg-gray-400"
+                    className={`mt-1 w-full h-full border-2 border-black rounded-xl p-2 text-xl bg-gray-400 placeholder-black focus:outline-blue-400 ${invalid ? "border-red-700" : ""}`}
                     type="password"
                     id="password"
-                    autoComplete="off"
+                    placeholder="Enter your password..."
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) =>setPassword(e.target.value)}
                 />
+                {<p>.</p>}
             </div>
             <div >
-                <button type="submit" className="flex w-full items-center justify-center font-bold border-black border-2 p-[10px] rounded bg-orange-300 hover:bg-slate-500">
+                <button type="submit" className="flex w-full text-xl items-center justify-center font-bold border-black border-2 p-[10px] rounded-xl bg-orange-300 hover:bg-gray-500 hover:text-white">
                     Login
                 </button>
             </div>

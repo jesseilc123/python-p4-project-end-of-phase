@@ -11,15 +11,11 @@ function Home( { search , category }) {
       .then(setArticles)
   }, []);
 
-  function handleNewArticle() {
-    console.log("article")
-  }
-
   if (!articles) return <h2>loading</h2>
   return (
-    <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-slate-400 rounded-lg">
-      <h4 className="flex items-center justify-center m-4 text-4xl">All Articles</h4>
-      <div className="grid gap-0 grid-cols-3 grid-rows-3 bg-slate-400">
+    <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-900 rounded-xl">
+      <h4 className="flex items-center justify-center m-4 text-4xl text-white font-bold">All Articles</h4>
+      <div className="grid gap-0 grid-cols-3 grid-rows-3 bg-gray-900">
           {articles.filter(article => {         
             if (search === ""){
               if(category === "All"){
@@ -45,7 +41,7 @@ function Home( { search , category }) {
             />
           ))}
           <Link 
-            className="flex flex-col min-h-[500px] items-center justify-center border mt-3 mx-2 rounded-lg hover:bg-slate-400 shadow-md"
+            className="flex flex-col min-h-[500px] items-center justify-center mt-3 mx-2 rounded-xl bg-gray-400 hover:bg-orange-300 hover:-translate-y-1 shadow-md hover:delay-50 border-black border-2"
             to="/new_article"
           >
             <p className="text-2xl mb-6">Make new article</p>
@@ -54,7 +50,7 @@ function Home( { search , category }) {
             </p>
           </Link>
       </div>
-      <div className="bg-slate-300 h-[50px]"></div>
+      <div className="bg-gray-900 h-[50px]"></div>
     </div>
   )
 }
