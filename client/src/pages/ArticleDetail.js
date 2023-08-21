@@ -21,7 +21,7 @@ function ArticleDetail() {
         setArticles(articlesNewComment)
     }
     return (
-        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-800">
+        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-900">
             {articles.filter((article) => (id) == article.id).map(article => (
                 <IndiviArticle 
                     key={article.id}

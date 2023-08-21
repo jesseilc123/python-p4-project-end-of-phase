@@ -3,11 +3,7 @@ import { useFormik } from "formik"
 import { basicSchema } from "../schemas";
 
 function SignUpForm({ setUser }) {
-
-    const onSubmit = () => {
-        console.log("submitted");
-    }    
-
+    
     const { values, errors, touched, handleChange, handleSubmit} = useFormik({
         initialValues: {
             username: "",
@@ -15,10 +11,24 @@ function SignUpForm({ setUser }) {
             confirmPassword: ""
         },
         validationSchema: basicSchema,
-        onSubmit,
+        onSubmit: (values) => {
+            fetch("/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(values, null, 2),
+            }).then((r) => {
+                if (r.ok) {
+                    r.json().then((user) => {
+                        setUser(user)
+                    })
+                } else {
+                    r.json().then((err) => console.log(err))
+                }
+            })
+        },
     })
-
-    console.log(errors);
 
     return (
         <form autoComplete="off" onSubmit={handleSubmit} className="w-[400px]">

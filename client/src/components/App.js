@@ -38,11 +38,13 @@ function App() {
             <Route path="/profile"> 
               <Profile />
             </ Route>
-            <Route path="/"> 
+            <Route exact path="/"> 
               <Home search={search} category={category}/>
             </ Route>
-            <Route path="/*">
-              <h1>404 Page not found</h1>
+            <Route path="*">
+              <div className="h-screen w-full bg-gray-900">
+                <h1 className="absolute inset-x-0 top-[90px] left-64 text-8xl text-white">404 Page not found</h1>
+              </div>
             </Route>
           </Switch>
         </main>

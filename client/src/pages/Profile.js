@@ -37,7 +37,7 @@ function Profile() {
     }
 
     return (
-        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-800">
+        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-900">
             <h4 className="flex justify-center m-4 text-4xl text-white font-bold">Articles you've Commented on</h4>
             <div className="grid grid-cols-3 grid-rows-3 bg-gray-800">
                 {comments.map((comment) => (

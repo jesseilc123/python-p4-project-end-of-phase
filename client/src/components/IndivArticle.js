@@ -37,7 +37,7 @@ function IndivArticles ({ title, body, category, comments, newCommentRender}) {
     }
 
     return  (
-        <div className="bg-gray-800">
+        <div className="bg-gray-900">
             <div className="border-black border-2 mt-3 mx-2 p-3 rounded-xl bg-gray-400">
                 <h2 className="font-bold text-4xl">{title}</h2>
                 <p className="border-black font-bold border-2 rounded-xl px-2 py-1 my-2 h-fit w-fit bg-orange-300">{category}</p>
@@ -45,7 +45,7 @@ function IndivArticles ({ title, body, category, comments, newCommentRender}) {
             </div>
             <div className="flex flex-col border-black border-2 mt-3 mx-2 mb-8 p-3 rounded-xl bg-gray-400">
                 <h4 className="text-2xl font-bold">Comments</h4>
-                <div>
+                <div className="p-3">
                     {comments.map(comment => (
                         <div key={comment.id} className="border-black border-2 rounded-xl px-2 py-1 my-2 h-fit w-fit bg-slate-300">
                             <div>
@@ -81,7 +81,7 @@ function IndivArticles ({ title, body, category, comments, newCommentRender}) {
                     </form>
                 </div>
             </div>
-            <div className="bg-gray-800 text-gray-800">add bottom divider</div>
+            <div className="bg-gray-900 text-gray-900">add bottom divider</div>
         </div>
         
     )

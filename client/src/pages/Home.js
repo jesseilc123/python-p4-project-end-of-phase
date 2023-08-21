@@ -13,9 +13,9 @@ function Home( { search , category }) {
 
   if (!articles) return <h2>loading</h2>
   return (
-    <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-900 rounded-xl">
+    <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-900 ">
       <h4 className="flex items-center justify-center m-4 text-4xl text-white font-bold">All Articles</h4>
-      <div className="grid gap-0 grid-cols-3 grid-rows-3 bg-gray-900">
+      <div className="grid gap-0 grid-cols-3 grid-rows-3 bg-gray-900 overflow-hidden">
           {articles.filter(article => {         
             if (search === ""){
               if(category === "All"){
@@ -31,7 +31,8 @@ function Home( { search , category }) {
                 return article
               }
             } 
-          }).map((article) => (
+          })
+          .map((article) => (
             <Article 
               key={article.id}
               id={article.id}

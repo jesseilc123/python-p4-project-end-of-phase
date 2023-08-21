@@ -2,5 +2,8 @@
   "dependencies": {
     "formik": "^2.4.3",
     "react-alert": "^7.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.15"
   }
 }

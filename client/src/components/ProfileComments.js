@@ -62,7 +62,7 @@ function ProfileComments ({ id, content, article_id, articles, editRender, delet
                     <div key={article.id}>
                         <h2 className="font-bold text-4xl">{article.title}</h2>
                         <p className="border-black font-bold border-2 rounded-xl px-2 py-1 my-2 h-fit w-fit bg-orange-300 shadow-md">{article.category}</p>
-                        <p className="text-xl">{article.body.substring(0, 300)}...</p>
+                        <p className="text-2xl text-clip overflow-hidden line-clamp-6">{article.body}...</p>
                     </div>
                 ))}
             </div>
@@ -77,7 +77,7 @@ function ProfileComments ({ id, content, article_id, articles, editRender, delet
                         ) : (
                             <form>
                                 <input 
-                                    className="border-black rounded-xl px-2 py-1 my-2 w-[300px] h-fit"
+                                    className="border-black rounded-xl px-2 py-1 my-2 w-[300px] h-fit text-lg"
                                     type="body"
                                     id="username"
                                     autoComplete="off"
@@ -86,7 +86,7 @@ function ProfileComments ({ id, content, article_id, articles, editRender, delet
                                 />
                                 <button
                                     type="submit"
-                                    className=" justify-end bg-slate-300 hover:bg-green-300 border-black border-2 font-semibold rounded-xl px-2 py-1 my-2 ml-1"
+                                    className=" justify-end bg-slate-300 hover:bg-green-300 border-black border-2 font-semibold rounded-xl px-2 py-1 my-2 ml-1 text-lg"
                                     onClick={handleCommentEdit}
                                 >
                                     Confirm?
@@ -95,19 +95,19 @@ function ProfileComments ({ id, content, article_id, articles, editRender, delet
                         )}
                     </div>
                     <button 
-                        className={`border-black border-2 font-semibold rounded-xl px-2 py-1 my-2 h-fit w-fit bg-slate-300  ${isForm ? "hover:bg-gray-300" : "hover:bg-red-300"}`}
+                        className={`border-black border-2 font-semibold rounded-xl px-2 py-1 my-2 h-fit w-fit bg-slate-300 text-lg ${isForm ? "hover:bg-gray-300" : "hover:bg-red-300"}`}
                         onClick={hideCommentEdit}
                     >
                         {isForm ? "Edit" : "Cancel"}
                     </button>
                     <button 
-                        className={`border-black border-2 font-semibold rounded-xl px-2 py-1 my-2 h-fit w-fit hover:bg-red-300 bg-slate-300 ${isForm ? "flex" : "hidden"}`}
+                        className={`border-black border-2 font-semibold rounded-xl px-3 py-1 my-2 h-fit w-fit hover:bg-red-300 bg-slate-300 text-lg ${isForm ? "flex" : "hidden"}`}
                         onClick={handleCommentDelete}
                     >
                         X
                     </button>
                 </div>
-                <Link to={`/articles/${article_id}`} className="border-black border-2 font-semibold bg-slate-300 shadow-md rounded-xl px-2 py-1 my-2 h-fit w-fit hover:bg-slate-400">See article</Link>
+                <Link to={`/articles/${article_id}`} className="border-black border-2 font-semibold bg-slate-300 shadow-md rounded-xl px-2 py-1 my-2 h-fit w-fit text-lg hover:bg-slate-400">See article</Link>
             </div>
         </div> 
     )

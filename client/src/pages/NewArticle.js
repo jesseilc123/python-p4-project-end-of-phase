@@ -29,7 +29,7 @@ function NewArticle() {
     }
 
     return (
-        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-800 ">
+        <div className="absolute inset-x-0 top-[90px] h-screen left-64 bg-gray-900 ">
             <form onSubmit={handleSubmit} autoComplete="off" className=" m-4">
                 <div className="flex flex-col justify-center mb-4">
                     <label className="flex justify-start text-white text-4xl font-bold">Title</label>
