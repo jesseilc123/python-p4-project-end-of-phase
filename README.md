@@ -1,21 +1,21 @@
-##Overview
+## Overview
 
 Schnout is a fictional website where people can view, create, and comment on articles. User’s can either signup or login allowing them to have access to see the articles. A User can comment on an article which they can edit or delete later. A user can also create an article. Articles cannot be deleted or edited once posted. The Sidebar allows users to filter the article content by category and they also use the search bar to filter by title. A user can also view their profile where they can see all their comments and affiliated articles. Once the user is done using the web application they can log off. If they choose not to log off they will remain logged in.
 
-##Setup 
+## Setup 
 In the terminal type the following commands:
-`pipenv install && pipenv shell`
-`npm install –prefix client`
-`cd server`
-`flask db upgrade`
-`python seed.py`
-`python app.py`
+- `pipenv install && pipenv shell`
+- `npm install –prefix client`
+- `cd server`
+- `flask db upgrade`
+- `python seed.py`
+- `python app.py`
 Then open a separate terminal and enter:
-`npm start –prefix client`
+- `npm start –prefix client`
 
-##Technical
+## Technical
 
-###Back End
+### Back End
 
 **app.py**
 This is where the backend resides. It has multiple functions which serve many purposes.
@@ -54,7 +54,7 @@ This file simply seeds the data using faker.
 
 **components**
 
->**App.js**
+> **App.js**
 This component holds the bulk of the application. A useEffect is used to check for cookies, if so the user is automatically logged in. If not, the user is directed to the Login component. Using React Router we have 5 routes: 
 - At “/articles/:id” the ArticleDetail component will be loaded where users can view one specific article.
 - At “/new_article” the NewArticle component will be loaded where users can create new articles.
