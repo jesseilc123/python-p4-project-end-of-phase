@@ -77,4 +77,3 @@ from .comment import *
 #             f"content={self.content}, " + \
 #             f"user_id={self.user_id}, " + \
 #             f"article_id={self.article_id})"
-    

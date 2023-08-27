@@ -14,6 +14,9 @@
 from config import app
 from routes.routes import *
 from models.models import *
+
+if __name__ == '__main__':
+    app.run(port=5555, debug=True)
 # Views go here!
 # class CheckSession(Resource):
 
@@ -161,5 +164,5 @@ from models.models import *
 # api.add_resource(Articles, "/articles", endpoint="articles")
 # api.add_resource(Comments, "/comments", endpoint="comments")
 
-if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+# if __name__ == '__main__':
+#     app.run(port=5555, debug=True)

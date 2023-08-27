@@ -1,6 +1,7 @@
 from config import db, bcrypt
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import validates
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -10,7 +11,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
 
     username = db.Column(db.String, unique=True, nullable=False)
-    _password_hash = db.Column(db.String, nullable=False)
+    _password_hash = db.Column(db.String)
 
     comments = db.relationship('Comment', backref='user')
 
@@ -27,6 +28,13 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(
             self._password_hash, password.encode('utf-8'))
+    
+    @validates("username")
+    def check_username(self, key, username):
+        if (not username):
+            raise ValueError({"message": "Username must exist"})
+
+        return username
 
     def __repr__(self):
         return f"User(id={self.id}, " + \
